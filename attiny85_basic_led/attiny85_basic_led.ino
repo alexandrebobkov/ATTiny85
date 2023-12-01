@@ -24,8 +24,8 @@ void setup() {
 void loop() {
 
   sensor_value = analogRead(SENSOR_PIN);
-  DigiKeyboard.print("ATtiny85: ");
-  DigiKeyboard.print(sensor_value);
+  DigiKeyboard.print("ATtiny85. Sensor: ");
+  DigiKeyboard.println(sensor_value);
 
   //digitalWrite(0, HIGH);   
   digitalWrite(LED_PIN, HIGH);
