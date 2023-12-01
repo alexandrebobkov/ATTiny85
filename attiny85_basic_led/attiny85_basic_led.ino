@@ -1,3 +1,13 @@
+/*
+
+Arduino IDE
+Board: Digispark 16.5MHz (default)
+
+Alexander Bobkov
+Nov 30, 2023
+
+*/
+
 #include "DigiKeyboard.h" 
 
 #define LED_PIN 1 // LED on Model A  
