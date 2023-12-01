@@ -13,10 +13,11 @@ Nov 30, 2023
 #define LED_PIN 1 // LED on Model A  
 //#define LED_PIN 0 // LED on Model B 
 #define SENSOR_PIN 3
+#define GPIO_ADDR 0x27
 
 int sensor_value = 0;
 
-void setup() {                
+void setup() {             
   // Initialize the digital pin as an output
   pinMode(LED_PIN, OUTPUT); 
 }
