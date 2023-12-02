@@ -17,20 +17,20 @@ Nov 30, 2023
 
 unsigned int sensor_value = 0;
 unsigned int LED_PIN = 1;
-unsigned int SENSOR_PIN = 4;
+unsigned int SENSOR_PIN = A2; //4;
 
 void setup() {             
   // Initialize the digital pin as an output
   pinMode(LED_PIN, OUTPUT);
-  pinMode(SENSOR_PIN, INPUT);
+  pinMode(SENSOR_PIN, INPUT_PULLUP);
   //Wire.begin();
 }
 
 void loop() {
 
   sensor_value = analogRead(SENSOR_PIN);
-  /*DigiKeyboard.print("ATtiny85. Sensor: ");
-  DigiKeyboard.println(sensor_value);*/
+  DigiKeyboard.print("ATtiny85. Sensor: ");
+  DigiKeyboard.println(sensor_value);
 
   //delay(1500);
   /*for (int n = 0; n < 3; n++)
