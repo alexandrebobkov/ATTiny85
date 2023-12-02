@@ -9,8 +9,8 @@ Nov 30, 2023
 */
 
 #include "DigiKeyboard.h"
-#include <Wire.h>
-#include <avr/io.h>
+//#include <Wire.h>
+#include <TinyWireM.h>
 
 //#define USB_OUTPUT
 //#define SERIAL_OUTPUT
@@ -24,7 +24,8 @@ void setup() {
   // Initialize the digital pin as an output
   pinMode(LED_PIN, OUTPUT);
   pinMode(SENSOR_PIN, INPUT_PULLUP);
-  Wire.begin();
+  //Wire.begin();
+  TinyWireM.begin();
   #ifdef SERIAL_OUTPUT
   Serial.begin(9600);
   Serial.println("ATTinu 85");
@@ -61,12 +62,15 @@ void loop() {
     delay(125);
   }           
 
-  Wire.beginTransmission(10);
-  Wire.write(sensor_raw);
+  /*Wire.beginTransmission(10);
+  Wire.write(sensor_raw);*/
+  TinyWireM.beginTransmission(10);
+  TinyWireM.send(sensor_raw);
+  TinyWireM.endTransmission();
   //Wire.endTransmission();
 }
 
-void readInput()
+/*void readInput()
 {
   sensor_value = analogRead(SENSOR_PIN);
   sensor_raw = analogRead(SENSOR_PIN);
@@ -75,4 +79,4 @@ void readInput()
 void sendInput()
 {
   Wire.write(sensor_raw);
-}
+}*/
