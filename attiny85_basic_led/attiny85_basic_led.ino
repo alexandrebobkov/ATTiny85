@@ -10,6 +10,7 @@ Nov 30, 2023
 
 #include "DigiKeyboard.h"
 #include <Wire.h>
+#include <avr/io.h>
 
 //#define USB_OUTPUT
 //#define SERIAL_OUTPUT
@@ -33,8 +34,9 @@ void setup() {
 void loop() {
 
   sensor_value = analogRead(SENSOR_PIN);
-  //sensor = analogRead(SENSOR_PIN);
   sensor_raw = analogRead(SENSOR_PIN);
+  //readInput();
+
   #ifdef USB_OUTPUT
   DigiKeyboard.print("ATtiny85. Sensor (");
   DigiKeyboard.print(SENSOR_PIN);
@@ -48,15 +50,6 @@ void loop() {
   Serial.println(sensor_value);
   #endif
 
-
-  //delay(1500);
-  /*for (int n = 0; n < 3; n++)
-  {
-    digitalWrite(LED_PIN, HIGH);
-    delay(125);        
-    digitalWrite(LED_PIN, LOW); 
-    delay(125);
-  }*/
   for (int n = 5; n < 25; n+=5)
   {
     analogWrite(LED_PIN, n);
@@ -71,4 +64,15 @@ void loop() {
   Wire.beginTransmission(10);
   Wire.write(sensor_raw);
   //Wire.endTransmission();
+}
+
+void readInput()
+{
+  sensor_value = analogRead(SENSOR_PIN);
+  sensor_raw = analogRead(SENSOR_PIN);
+}
+
+void sendInput()
+{
+  Wire.write(sensor_raw);
 }
