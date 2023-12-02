@@ -40,15 +40,15 @@ void loop() {
     digitalWrite(LED_PIN, LOW); 
     delay(125);
   }*/
-  for (int n = 0; n < 255; n+=5)
+  for (int n = 5; n < 25; n+=5)
   {
     analogWrite(LED_PIN, n);
-    delay(25);
+    delay(125);
   } 
-  for (int n = 255; n >= 0; n--)
+  for (int n = 25; n >= 5; n--)
   {
     analogWrite(LED_PIN, n);
-    delay(25);
+    delay(125);
   }           
   //delay(1500);
 }
