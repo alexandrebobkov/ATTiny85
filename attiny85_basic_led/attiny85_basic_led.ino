@@ -10,7 +10,9 @@ Nov 30, 2023
 
 #include "DigiKeyboard.h"
 //#include <Wire.h>
-#include <TinyWireM.h>
+//#include <TinyWireM.h>
+#include <TinyWireS.h>
+#include <LiquidCrystal_I2C.h>
 
 //#define USB_OUTPUT
 //#define SERIAL_OUTPUT
@@ -24,8 +26,8 @@ void setup() {
   // Initialize the digital pin as an output
   pinMode(LED_PIN, OUTPUT);
   pinMode(SENSOR_PIN, INPUT_PULLUP);
-  //Wire.begin();
-  TinyWireM.begin();
+  TinyWireS.begin(11);
+  //TinyWireM.begin();
   #ifdef SERIAL_OUTPUT
   Serial.begin(9600);
   Serial.println("ATTinu 85");
@@ -36,7 +38,6 @@ void loop() {
 
   sensor_value = analogRead(SENSOR_PIN);
   sensor_raw = analogRead(SENSOR_PIN);
-  //readInput();
 
   #ifdef USB_OUTPUT
   DigiKeyboard.print("ATtiny85. Sensor (");
@@ -51,32 +52,15 @@ void loop() {
   Serial.println(sensor_value);
   #endif
 
-  for (int n = 5; n < 25; n+=5)
-  {
+  for (int n = 0; n < 25; n+=5) {
     analogWrite(LED_PIN, n);
-    delay(125);
-  } 
-  for (int n = 25; n >= 5; n--)
-  {
+    delay(125); } 
+  for (int n = 25; n >= 0; n--) {
     analogWrite(LED_PIN, n);
-    delay(125);
-  }           
+    delay(125); }           
 
-  /*Wire.beginTransmission(10);
-  Wire.write(sensor_raw);*/
-  TinyWireM.beginTransmission(10);
-  TinyWireM.send(sensor_raw);
-  TinyWireM.endTransmission();
-  //Wire.endTransmission();
+  /*TinyWireM.beginTransmission(0x11);
+  TinyWireM.send(1);
+  TinyWireM.endTransmission();*/
+  TinyWireS.send(1);
 }
-
-/*void readInput()
-{
-  sensor_value = analogRead(SENSOR_PIN);
-  sensor_raw = analogRead(SENSOR_PIN);
-}
-
-void sendInput()
-{
-  Wire.write(sensor_raw);
-}*/
