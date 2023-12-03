@@ -1,10 +1,15 @@
 /*
 
-Arduino IDE
-Board: Digispark 16.5MHz (default)
+  Arduino IDE
+  ATTiny85
+  Board: Digispark 16.5MHz (default)
 
-Alexander Bobkov
-Nov 30, 2023
+  By:     Alexander Bobkov
+  Date:   Nov 30, 2023
+
+  About:  Basic program written for ATTiny85 that sends data (sensor value) over I2C to a master device.
+
+  Notes:  Use Logic 2 viewer to see data being transmitted over I2C.
 
 */
 
@@ -26,7 +31,7 @@ void setup() {
   // Initialize the digital pin as an output
   pinMode(LED_PIN, OUTPUT);
   pinMode(SENSOR_PIN, INPUT_PULLUP);
-  TinyWireS.begin(11);
+  TinyWireS.begin(5);
   //TinyWireM.begin();
   #ifdef SERIAL_OUTPUT
   Serial.begin(9600);
@@ -49,7 +54,7 @@ void loop() {
   Serial.print("ATtiny85. Sensor (");
   Serial.print(SENSOR_PIN);
   Serial.print("): ");
-  Serial.println(sensor_value);
+  Serial.println(11);
   #endif
 
   for (int n = 0; n < 25; n+=5) {
@@ -59,8 +64,5 @@ void loop() {
     analogWrite(LED_PIN, n);
     delay(125); }           
 
-  /*TinyWireM.beginTransmission(0x11);
-  TinyWireM.send(1);
-  TinyWireM.endTransmission();*/
-  TinyWireS.send(1);
+  TinyWireS.send(9);
 }
