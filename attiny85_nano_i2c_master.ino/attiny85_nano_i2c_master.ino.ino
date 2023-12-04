@@ -14,7 +14,10 @@
 
 #include <Wire.h>
 
-#define SENSOR_ADDRESS 0x5
+#define SENSOR_ADDRESS 0x5  // Custom
+//#define SENSOR_ADDRESS 0x27  // LCD
+
+byte i2c_receive;
 
 void setup() {
   Wire.begin();
@@ -22,7 +25,13 @@ void setup() {
 }
 
 void loop() {
+
   Wire.requestFrom(SENSOR_ADDRESS, 1);
+  if (Wire.available()) {
+    i2c_receive = Wire.read();
+  }
+
+  /*Wire.requestFrom(SENSOR_ADDRESS, 1);
   delay(5);
 
   uint32_t buf;
@@ -30,7 +39,7 @@ void loop() {
   while (Wire.available()) {
     size_t actually_read = Wire.readBytes((uint8_t*)&buf, 4);
     Serial.println(buf, BIN);
-  }
+  }*/
 
   digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
   delay(250);                      // wait for a second

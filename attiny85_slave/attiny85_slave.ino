@@ -13,11 +13,7 @@
 
 */
 
-#include "DigiKeyboard.h"
-//#include <Wire.h>
-//#include <TinyWireM.h>
 #include <TinyWireS.h>
-#include <LiquidCrystal_I2C.h>
 
 //#define USB_OUTPUT
 //#define SERIAL_OUTPUT
@@ -33,8 +29,7 @@ void setup() {
   pinMode(LED_PIN, OUTPUT);
   //pinMode(SENSOR_PIN, INPUT);
   TinyWireS.begin(5);
-  //TinyWireM.begin();
-  #ifdef SERIAL_OUTPUT
+  #ifdef SERIAL_OUTPUT;
   Serial.begin(9600);
   Serial.println("ATTinu 85");
   #endif
@@ -64,7 +59,6 @@ void loop() {
   for (int n = 25; n >= 0; n--) {
     analogWrite(LED_PIN, n);
     delay(125); }           
-
 
   TinyWireS.send(data);
   data++;
