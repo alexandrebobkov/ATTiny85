@@ -1,3 +1,11 @@
+/*
+  By: Alexander Bobkov
+
+  December 4, 2023
+
+  Scans I2C bus and requests variable value from ATTiny85 device.
+  
+*/
 #include <Arduino.h>
 #include <Wire.h>
 
@@ -17,11 +25,13 @@ void setup() {
   {
     Wire.beginTransmission(address);
     if (Wire.endTransmission() == 0) {
-      Serial.print("I2C device was found at ");
-      Serial.println(address);
-      i2c_data = Wire.read();
+      Serial.print("I2C device was found at address: ");
+      Serial.println(address, HEX);
+      //i2c_data = Wire.read();
+      Wire.requestFrom(address, 1);
+      size_t buff_size = Wire.readBytes((uint8_t*)&i2c_data, 1);
       Serial.print("Value: ");
-      Serial.println(i2c_data);
+      Serial.println(i2c_data, HEX);
     }
     else if (Wire.endTransmission() == 4)
       Serial.println("I2C unknown error.");
