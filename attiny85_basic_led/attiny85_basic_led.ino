@@ -27,12 +27,12 @@ uint8_t sensor_raw = 0;
 uint8_t data = 5;
 bool inc = true;
 unsigned int LED_PIN = 1;
-int SENSOR_PIN = A2; //4;
+//int SENSOR_PIN = A2; //4;
 
 void setup() {             
   // Initialize the digital pin as an output
   pinMode(LED_PIN, OUTPUT);
-  pinMode(SENSOR_PIN, INPUT);
+//  pinMode(SENSOR_PIN, INPUT);
   TinyWireS.begin(5);
 }
 
