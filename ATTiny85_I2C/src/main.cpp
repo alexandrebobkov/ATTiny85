@@ -11,7 +11,7 @@
 
 #define BUILTIN_LED 2
 
-byte i2c_data, address, err;
+byte i2c_data, address, err, device_addr;
 
 void setup() {
   Wire.begin();
@@ -19,7 +19,7 @@ void setup() {
   Serial.begin(115200);
   Serial.println("I2C");
 
-  Serial.println("Starting I2C transmission ...");
+  Serial.println("I2C scan ...");
 
   for (address = 1; address < 127; address++)
   {
@@ -27,6 +27,7 @@ void setup() {
     if (Wire.endTransmission() == 0) {
       Serial.print("I2C device was found at address: ");
       Serial.println(address, HEX);
+      device_addr = address;
       //i2c_data = Wire.read();
       Wire.requestFrom(address, 1);
       size_t buff_size = Wire.readBytes((uint8_t*)&i2c_data, 1);
@@ -36,6 +37,7 @@ void setup() {
     else if (Wire.endTransmission() == 4)
       Serial.println("I2C unknown error.");
   }
+  Wire.end();
 }
 
 void loop() {
@@ -45,8 +47,15 @@ void loop() {
   digitalWrite(BUILTIN_LED, LOW);
   delay(250);
 
+  /*i2c_data = 0;
   Serial.print("I2C device at address: ");
-  Serial.println(address, HEX);
+  Serial.println(device_addr, HEX);
+  Wire.beginTransmission(device_addr);
+  Wire.requestFrom(device_addr, 1);
+  size_t buff_size = Wire.readBytes((uint8_t*)&i2c_data, 1);
+  Serial.print("Value: ");
+  Serial.println(i2c_data, HEX);
+  Serial.println();
 
   /*address = 5;
   Wire.beginTransmission(address);
