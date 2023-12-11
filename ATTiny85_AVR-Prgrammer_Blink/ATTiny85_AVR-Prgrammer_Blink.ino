@@ -1,5 +1,6 @@
 /*
   ATTiny85 Blink
+  Basic scetch to test functionality of ATTiny85 development board.
 
   Cycles LED on and off for a quarter of second.
   Dims on and off external LED.
