@@ -25,6 +25,7 @@
 
 //#include "DigiKeyboard.h"
 //#include <Wire.h>
+#include <Arduino.h>
 //#include <TinyWireM.h>
 #include <TinyWireS.h>
 //#include <LiquidCrystal_I2C.h>
@@ -34,8 +35,8 @@
 
 unsigned int sensor_value = 0;
 uint8_t sensor_raw = 0;
-uint8_t data = 15;
-uint8_t address = 5;
+uint8_t data = 1;
+uint8_t address = 10;
 bool inc = true;
 unsigned int LED_SYS_PIN = 0;
 unsigned int LED_PIN = 3;
@@ -46,6 +47,7 @@ void setup() {
   pinMode(LED_PIN, OUTPUT);
 //  pinMode(SENSOR_PIN, INPUT);
   TinyWireS.begin(address);
+  //Wire.begin();
 }
 
 void loop() {
@@ -73,6 +75,14 @@ void loop() {
   digitalWrite(LED_PIN, HIGH);
   delay(250);
   digitalWrite(LED_PIN, LOW);
-  TinyWireS.send(data);
+  delay(250);
+  //TinyWireS.available();
+  if (data <= 10) {
+    TinyWireS.send(data);
+    data++;
+  }
+  else {
+    data = 0;
+  }
   delay(1000);
 }

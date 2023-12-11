@@ -37,6 +37,7 @@ void setup() {
     }
     else if (Wire.endTransmission() == 4)
       Serial.println("I2C unknown error.");
+    delay(500);
   }
   //Wire.end();
 }
