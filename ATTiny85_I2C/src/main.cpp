@@ -33,11 +33,12 @@ void setup() {
       size_t buff_size = Wire.readBytes((uint8_t*)&i2c_data, 2);
       Serial.print("Value: ");
       Serial.println(i2c_data, HEX);
+      device_addr = address;
     }
     else if (Wire.endTransmission() == 4)
       Serial.println("I2C unknown error.");
   }
-  Wire.end();
+  //Wire.end();
 }
 
 void loop() {
@@ -47,26 +48,16 @@ void loop() {
   digitalWrite(BUILTIN_LED, LOW);
   delay(250);
 
-  /*i2c_data = 0;
-  Serial.print("I2C device at address: ");
+  i2c_data = 0;
+  Serial.print("Listening to I2C device at address: ");
   Serial.println(device_addr, HEX);
   Wire.beginTransmission(device_addr);
-  Wire.requestFrom(device_addr, 1);
-  size_t buff_size = Wire.readBytes((uint8_t*)&i2c_data, 1);
-  Serial.print("Value: ");
-  Serial.println(i2c_data, HEX);
-  Serial.println();
-
-  /*address = 5;
-  Wire.beginTransmission(address);
-  Wire.requestFrom(address, 1);
   if (Wire.endTransmission() == 0) {
-    Wire.requestFrom(address, 1);
-    size_t buff_size = Wire.readBytes((uint8_t*)&i2c_data, 1);
+    Wire.requestFrom(device_addr, 2);
+    size_t buff_size = Wire.readBytes((uint8_t*)&i2c_data, 2);
     Serial.print("Value: ");
     Serial.println(i2c_data, HEX);
+    Serial.println();
   }
-  else if (Wire.endTransmission() == 4)
-    Serial.println("I2C unknown error.");*/
-
+  delay(1000);
 }
