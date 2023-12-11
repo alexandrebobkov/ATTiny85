@@ -24,30 +24,31 @@
 */
 
 //#include "DigiKeyboard.h"
-//#include <Wire.h>
 #include <Arduino.h>
 //#include <TinyWireM.h>
 #include <TinyWireS.h>
 //#include <LiquidCrystal_I2C.h>
 
-//#define USB_OUTPUT
-//#define SERIAL_OUTPUT
+// I2C address
+uint8_t address = 10;
 
+// Peripheral sensor variables
 unsigned int sensor_value = 0;
 uint8_t sensor_raw = 0;
 uint8_t data = 1;
-uint8_t address = 10;
 bool inc = true;
+
+// Built-in LEDs
 unsigned int LED_SYS_PIN = 0;
 unsigned int LED_PIN = 3;
 //int SENSOR_PIN = A2; //4;
 
-void setup() {             
+void setup() {        
   // Initialize the digital pin as an output
   pinMode(LED_PIN, OUTPUT);
 //  pinMode(SENSOR_PIN, INPUT);
+  // Initialize I2C slave device at given address.
   TinyWireS.begin(address);
-  //Wire.begin();
 }
 
 void loop() {
@@ -55,19 +56,7 @@ void loop() {
   //sensor_value = analogRead(SENSOR_PIN);
   //sensor_raw = analogRead(SENSOR_PIN);
 
-  /*#ifdef USB_OUTPUT
-  DigiKeyboard.print("ATtiny85. Sensor (");
-  DigiKeyboard.print(SENSOR_PIN);
-  DigiKeyboard.print("): ");
-  DigiKeyboard.println(sensor_value);
-  #endif
-  #ifdef SERIAL_OUTPUT
-  Serial.print("ATtiny85. Sensor (");
-  Serial.print(SENSOR_PIN);
-  Serial.print("): ");
-  Serial.println(11);
-  #endif*/
-
+  // LED pulse blink.
   digitalWrite(LED_PIN, HIGH);
   delay(250);
   digitalWrite(LED_PIN, LOW);
@@ -76,7 +65,7 @@ void loop() {
   delay(250);
   digitalWrite(LED_PIN, LOW);
   delay(250);
-  //TinyWireS.available();
+  // Send value between 0 and 10, depending on a cycle iterration
   if (data <= 10) {
     TinyWireS.send(data);
     data++;
@@ -84,5 +73,6 @@ void loop() {
   else {
     data = 0;
   }
+  // Delay 1 second
   delay(1000);
 }
