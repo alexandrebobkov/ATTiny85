@@ -45,4 +45,19 @@ void loop() {
   digitalWrite(BUILTIN_LED, LOW);
   delay(250);
 
+  Serial.print("I2C device at address: ");
+  Serial.println(address, HEX);
+
+  /*address = 5;
+  Wire.beginTransmission(address);
+  Wire.requestFrom(address, 1);
+  if (Wire.endTransmission() == 0) {
+    Wire.requestFrom(address, 1);
+    size_t buff_size = Wire.readBytes((uint8_t*)&i2c_data, 1);
+    Serial.print("Value: ");
+    Serial.println(i2c_data, HEX);
+  }
+  else if (Wire.endTransmission() == 4)
+    Serial.println("I2C unknown error.");*/
+
 }

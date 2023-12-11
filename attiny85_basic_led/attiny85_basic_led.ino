@@ -34,16 +34,18 @@
 
 unsigned int sensor_value = 0;
 uint8_t sensor_raw = 0;
-uint8_t data = 5;
+uint8_t data = 15;
+uint8_t address = 5;
 bool inc = true;
-unsigned int LED_PIN = 1;
+unsigned int LED_SYS_PIN = 0;
+unsigned int LED_PIN = 3;
 //int SENSOR_PIN = A2; //4;
 
 void setup() {             
   // Initialize the digital pin as an output
   pinMode(LED_PIN, OUTPUT);
 //  pinMode(SENSOR_PIN, INPUT);
-  TinyWireS.begin(5);
+  TinyWireS.begin(address);
 }
 
 void loop() {
@@ -64,21 +66,13 @@ void loop() {
   Serial.println(11);
   #endif*/
 
-  for (uint8_t k = 0; k < 10; k++)
-  {
-    digitalWrite(LED_PIN, HIGH);
-    delay(250);
-    digitalWrite(LED_PIN, LOW);
-    delay(250);
-
-    /*for (int n = 0; n < 25; n+=5) {
-      analogWrite(LED_PIN, n);
-      delay(125); 
-    } 
-    for (int n = 25; n >= 0; n--) {
-      analogWrite(LED_PIN, n);
-      delay(125);
-    }*/
-    TinyWireS.send(k);
-  }
+  digitalWrite(LED_PIN, HIGH);
+  delay(250);
+  digitalWrite(LED_PIN, LOW);
+  delay(250);
+  digitalWrite(LED_PIN, HIGH);
+  delay(250);
+  digitalWrite(LED_PIN, LOW);
+  TinyWireS.send(data);
+  delay(1000);
 }
