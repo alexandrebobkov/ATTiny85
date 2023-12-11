@@ -4,8 +4,18 @@
   ATTiny85
   Board: Digispark 16.5MHz (default)
 
+  OR
+
+  Board: ATtiny 25/45/85
+  Clock: Internal 1MHz
+  Processor: ATTiny85
+  Programmer: USBtinyISP
+  Sketch -> Upload Using Programmer
+
+
   By:     Alexander Bobkov
   Date:   Nov 30, 2023
+  Update: Dec 10, 2023
 
   About:  Basic program written for ATTiny85 that sends data (sensor value) over I2C to a master device.
 
@@ -54,13 +64,21 @@ void loop() {
   Serial.println(11);
   #endif*/
 
-  for (int n = 0; n < 25; n+=5) {
-    analogWrite(LED_PIN, n);
-    delay(125); 
-  } 
-  for (int n = 25; n >= 0; n--) {
-    analogWrite(LED_PIN, n);
-    delay(125);
-  }  
-  TinyWireS.send(data);
+  for (uint8_t k = 0; k < 10; k++)
+  {
+    digitalWrite(LED_PIN, HIGH);
+    delay(250);
+    digitalWrite(LED_PIN, LOW);
+    delay(250);
+
+    /*for (int n = 0; n < 25; n+=5) {
+      analogWrite(LED_PIN, n);
+      delay(125); 
+    } 
+    for (int n = 25; n >= 0; n--) {
+      analogWrite(LED_PIN, n);
+      delay(125);
+    }*/
+    TinyWireS.send(k);
+  }
 }
