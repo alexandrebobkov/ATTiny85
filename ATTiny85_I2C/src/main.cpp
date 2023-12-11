@@ -23,14 +23,14 @@ void setup() {
 
   for (address = 1; address < 127; address++)
   {
+    Serial.print("Address: ");
+    Serial.println(address, HEX);
     Wire.beginTransmission(address);
     if (Wire.endTransmission() == 0) {
       Serial.print("I2C device was found at address: ");
       Serial.println(address, HEX);
-      device_addr = address;
-      //i2c_data = Wire.read();
-      Wire.requestFrom(address, 1);
-      size_t buff_size = Wire.readBytes((uint8_t*)&i2c_data, 1);
+      Wire.requestFrom(address, 2);
+      size_t buff_size = Wire.readBytes((uint8_t*)&i2c_data, 2);
       Serial.print("Value: ");
       Serial.println(i2c_data, HEX);
     }
