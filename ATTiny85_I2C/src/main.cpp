@@ -1,12 +1,15 @@
 /*
+  I2C MASTER device
+
   By: Alexander Bobkov
 
   December 4, 2023
-  Updated: December 11, 2023
+  Updated: December 12, 2023
 
   Scans I2C bus for devices and requests variable value from available ATTiny85 device(s).
 
   Known issue: ATTiny85 stalls/stops sending values after 1-2 minutes.
+    Cause: happens when master I2C device is offline
   
 */
 #include <Arduino.h>

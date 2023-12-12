@@ -1,4 +1,5 @@
 /*
+  I2C SLAVE device
 
   Arduino IDE
   ATTiny85
@@ -15,7 +16,7 @@
 
   By:     Alexander Bobkov
   Date:   Nov 30, 2023
-  Update: Dec 10, 2023
+  Update: Dec 12, 2023
 
   About:  Basic program written for ATTiny85 that sends data (sensor value) over I2C to a master device.
 
