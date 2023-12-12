@@ -17,7 +17,9 @@
 byte i2c_data, address, err, device_addr;
 
 void setup() {
+  delay(100);
   Wire.begin();
+  Wire.setClock(1000);
   pinMode(BUILTIN_LED, OUTPUT);
   Serial.begin(115200);
   Serial.println("I2C");

@@ -43,12 +43,15 @@ unsigned int LED_SYS_PIN = 0;
 unsigned int LED_PIN = 3;
 //int SENSOR_PIN = A2; //4;
 
+
+
 void setup() {        
   // Initialize the digital pin as an output
   pinMode(LED_PIN, OUTPUT);
 //  pinMode(SENSOR_PIN, INPUT);
   // Initialize I2C slave device at given address.
   TinyWireS.begin(address);
+  //TinyWireS.onRequest(requestEvent);
 }
 
 void loop() {
@@ -66,13 +69,14 @@ void loop() {
   digitalWrite(LED_PIN, LOW);
   delay(250);
   // Send value between 0 and 10, depending on a cycle iterration
-  if (data <= 10) {
-    TinyWireS.send(data);
+  if (data <= 10)        
     data++;
-  }
-  else {
+  else
     data = 0;
-  }
-  // Delay 1 second
-  delay(1000);
+  // Delay 0.5 second
+  TinyWireS.send(data);
+  TinyWireS.available();
+  delay(500);
 }
+
+void requestEvent() {}
