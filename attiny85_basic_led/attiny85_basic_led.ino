@@ -33,19 +33,28 @@
 uint8_t address = 10;
 
 // Peripheral sensor variables
-unsigned int sensor_value = 0;
+uint8_t sensor_value = 0;
 uint8_t sensor_raw = 0;
 uint8_t data = 1;
-bool inc = true;
 
 // Built-in LEDs
 unsigned int LED_SYS_PIN = 0;
 unsigned int LED_PIN = 3;
 //int SENSOR_PIN = A2; //4;
 
+// Struct for storing sensors values
+struct sensors {
+  uint8_t t = 0x0;  // temperature
+  uint8_t p = 0x0;  // humidity
+  uint8_t l = 0x0;  // illuminance
+  uint8_t n = 0x0;
+};
+
+struct sensors sen;
 
 
-void setup() {        
+void setup() {       
+ 
   // Initialize the digital pin as an output
   pinMode(LED_PIN, OUTPUT);
 //  pinMode(SENSOR_PIN, INPUT);
@@ -69,12 +78,15 @@ void loop() {
   digitalWrite(LED_PIN, LOW);
   delay(250);
   // Send value between 0 and 10, depending on a cycle iterration
-  if (data <= 10)        
-    data++;
+  if (data < 10)        
+    //data++;
+    sen.n = sen.n +1;
   else
-    data = 0;
+    //data = 0x0;
+    sen.n = 0x0;
   // Delay 0.5 second
-  TinyWireS.send(data);
+  //TinyWireS.send(data);
+  TinyWireS.send(sen.n);
   TinyWireS.available();
   delay(500);
 }
