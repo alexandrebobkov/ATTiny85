@@ -61,6 +61,7 @@ void setup() {
   // Initialize I2C slave device at given address.
   TinyWireS.begin(address);
   //TinyWireS.onRequest(requestEvent);
+  //TinyWireS.onReceive(receiveEvent);
 }
 
 void loop() {
@@ -92,3 +93,4 @@ void loop() {
 }
 
 void requestEvent() {}
+void receiveEvent() {}
