@@ -16,7 +16,7 @@
 
   By:     Alexander Bobkov
   Date:   Nov 30, 2023
-  Update: Dec 12, 2023
+  Update: Dec 13, 2023
 
   About:  Basic program written for ATTiny85 that sends data (sensor value) over I2C to a master device.
 
@@ -41,7 +41,7 @@ uint8_t data = 1;
 // Built-in LEDs
 unsigned int LED_SYS_PIN = 0;
 unsigned int LED_PIN = 3;
-//int SENSOR_PIN = A2; //4;
+int SENSOR_PIN = A2; //4;
 
 // Struct for storing sensors values
 struct sensors {
@@ -58,7 +58,7 @@ void setup() {
  
   // Initialize the digital pin as an output
   pinMode(LED_PIN, OUTPUT);
-//  pinMode(SENSOR_PIN, INPUT);
+  pinMode(SENSOR_PIN, INPUT);
   // Initialize I2C slave device at given address.
   TinyWireS.begin(address);
   //TinyWireS.onRequest(requestEvent);
@@ -67,7 +67,7 @@ void setup() {
 
 void loop() {
 
-  //sensor_value = analogRead(SENSOR_PIN);
+  sensor_value = analogRead(SENSOR_PIN);
   //sensor_raw = analogRead(SENSOR_PIN);
 
   // LED pulse blink.
@@ -88,7 +88,8 @@ void loop() {
     sen.n = 0x0;
   // Delay 0.5 second
   //TinyWireS.send(data);
-  TinyWireS.send(sen.n);
+  //TinyWireS.send(sen.n);
+  TinyWireS.send(sensor_value);
   TinyWireS.available();
   delay(500);
 }
