@@ -4,7 +4,7 @@
   By: Alexander Bobkov
 
   December 4, 2023
-  Updated: December 12, 2023
+  Updated: December 13, 2023
 
   Scans I2C bus for devices and requests variable value from available ATTiny85 device(s).
 
