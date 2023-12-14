@@ -28,7 +28,7 @@ void setup() {
   Serial.println("I2C");
 
   // Scan I2C bus
-  Serial.println("I2C scan ...");
+  /*Serial.println("I2C scan ...");
   for (address = 1; address < 127; address++)
   {
     Serial.print("Address: ");
@@ -47,7 +47,8 @@ void setup() {
     else if (Wire.endTransmission() == 4)
       Serial.println("I2C unknown error.");
     delay(150); //500
-  }
+  }*/
+  device_addr = 0xA;
 }
 
 void loop() {
