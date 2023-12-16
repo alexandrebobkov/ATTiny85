@@ -29,6 +29,7 @@
 //#include <TinyWireM.h>
 #include <TinyWireS.h>
 //#include <LiquidCrystal_I2C.h>
+#include <avr/delay.h>
 
 // I2C address
 uint8_t address = 10;
