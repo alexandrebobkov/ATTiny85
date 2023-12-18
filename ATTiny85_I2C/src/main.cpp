@@ -53,7 +53,7 @@ void setup() {
   device_addr = 0xA;
   Serial.println("\n");
   Serial.print(dev_num);
-  Serial.println(" devices on I2C bus");
+  Serial.println(" devices on I2C bus\n\n");
   delay(2500);
 }
 
