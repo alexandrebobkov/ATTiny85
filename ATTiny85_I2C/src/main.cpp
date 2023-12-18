@@ -28,7 +28,8 @@ void setup() {
   Serial.println("I2C");
 
   // Scan I2C bus
-  /*Serial.println("I2C scan ...");
+  int dev_num = 0;
+  Serial.println("I2C scan ...");
   for (address = 1; address < 127; address++)
   {
     Serial.print("Address: ");
@@ -36,6 +37,7 @@ void setup() {
     Wire.beginTransmission(address);
     if (Wire.endTransmission() == 0) {
       Serial.print("I2C device was found at address: ");
+      dev_num++;
       Serial.println(address, HEX);
       Wire.requestFrom(address, 2);
       size_t buff_size = Wire.readBytes((uint8_t*)&i2c_data, 2);
@@ -47,8 +49,12 @@ void setup() {
     else if (Wire.endTransmission() == 4)
       Serial.println("I2C unknown error.");
     delay(150); //500
-  }*/
+  }
   device_addr = 0xA;
+  Serial.println("\n");
+  Serial.print(dev_num);
+  Serial.println(" devices on I2C bus");
+  delay(2500);
 }
 
 void loop() {
