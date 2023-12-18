@@ -37,14 +37,8 @@ void setup() {
 
 // the loop function runs over and over again forever
 void loop() {
-  digitalWrite(LED_SYS_PIN, HIGH);
-  delay(250);
-  digitalWrite(LED_SYS_PIN, LOW);
-  delay(250);
-  digitalWrite(LED_SYS_PIN, HIGH);
-  delay(250);
-  digitalWrite(LED_SYS_PIN, LOW);
-
+  
+  blink_status(1);
   for (int n = 0; n < 25; n+=5) {
     analogWrite(LED_PIN, n);
     delay(125); 
@@ -53,4 +47,16 @@ void loop() {
     analogWrite(LED_PIN, n);
     delay(125);
   } 
+}
+
+void blink_status(int status) {
+  if (status == 1) {  // status O.K.
+    digitalWrite(LED_SYS_PIN, HIGH);
+    delay(250);
+    digitalWrite(LED_SYS_PIN, LOW);
+    delay(250);
+    digitalWrite(LED_SYS_PIN, HIGH);
+    delay(250);
+    digitalWrite(LED_SYS_PIN, LOW);
+  }
 }
