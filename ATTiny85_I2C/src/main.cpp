@@ -28,7 +28,7 @@ void setup() {
   Serial.println("I2C");
 
   // Scan I2C bus
-  int dev_num = 0;
+  int dev_num = 0;  //Save number of devices connected to I2C bus
   Serial.println("I2C scan ...");
   for (address = 1; address < 127; address++)
   {
@@ -37,7 +37,7 @@ void setup() {
     Wire.beginTransmission(address);
     if (Wire.endTransmission() == 0) {
       Serial.print("I2C device was found at address: ");
-      dev_num++;
+      dev_num++;                                          // +1 if I2C device is connected to a bus
       Serial.println(address, HEX);
       Wire.requestFrom(address, 2);
       size_t buff_size = Wire.readBytes((uint8_t*)&i2c_data, 2);
