@@ -10,7 +10,7 @@ void setup() {
   lcd.backlight();
   //lcd.home();
   //lcd.print("Hello Foxie");
-  display("Hello Foxie");
+  displayText("Hello Foxie");
   //lcd.setCursor(0, 1);
 
 }
@@ -22,7 +22,7 @@ void loop() {
 
 void displayText(String text) {
   char charBuf[16];
-  text.toCharArray(sharBuf, 16);
+  text.toCharArray(charBuf, 16);
   for (int i = 0; i < text.length(); i++) {
     lcd.print(charBuf[i]);
   }
