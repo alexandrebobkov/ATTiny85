@@ -39,11 +39,11 @@ void setup() {
 void loop() {
   
   blink_status(1);
-  for (int n = 0; n < 25; n+=5) {
+  for (int n = 0; n < 255; n+=5) {
     analogWrite(LED_PIN, n);
     delay(125); 
   } 
-  for (int n = 25; n >= 0; n--) {
+  for (int n = 255; n >= 0; n--) {
     analogWrite(LED_PIN, n);
     delay(125);
   } 

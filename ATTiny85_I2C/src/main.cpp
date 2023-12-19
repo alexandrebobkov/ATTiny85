@@ -10,6 +10,10 @@
 
   Known issue: ATTiny85 stalls/stops sending values after 1-2 minutes.
     Cause: happens when master I2C device is offline; I2C slave device power is dependant on ESP32 master I2C device
+
+  ESP32:
+    SDA -> GPIO 21
+    SCL -> GPIO 22
   
 */
 #include <Arduino.h>
