@@ -17,9 +17,12 @@ void setup() {
   lcd.backlight();
   //lcd.setContrast(80);
   lcd.setCursor(0, 0);              // Line 1
-  displayText("Hello Foxie");
+  //displayText("Hello Foxie");
+  //lcd.autoscroll();
+  displayText(" HAPPY HOLIDAYS");
   lcd.setCursor(0, 1);              // Line 2
-  displayText("I love you");
+  //displayText("I love you");
+  displayText(" EIT  2023/2024");
 }
 
 void loop() {
