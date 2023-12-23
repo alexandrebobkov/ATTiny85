@@ -16,7 +16,7 @@
 
   By:     Alexander Bobkov
   Date:   Nov 30, 2023
-  Update: Dec 13, 2023
+  Update: Dec 23, 2023
 
   About:  Basic program written for ATTiny85 that sends data (sensor value) over I2C to a master device.
 
@@ -59,6 +59,48 @@ const byte reg_size = 4;
 volatile uint16_t i2c_registers[reg_size];
 volatile byte reg_position;
 boolean update_request = false;
+
+/*namespace EEPROM_DATA {
+  uint8_t default_defice_address  = address;
+  uint8_t this_device_address = 0x05;
+
+  bool device_addr_valid(uint8_t addr) {
+    return (addr > 0x04 && addr < 0x7E);
+  }
+  bool store_device_addr(uint8_t new_device_addr) {
+    if (!device_addr_valid(new_device_addr))
+      return false;
+    EEPROM.write(EEPROM_DATA::this_device_address, new_device_addr);
+    return true;
+  }
+  uint8_t get_device_addr() {
+    uint8_t _addr = EEPROM.read(EEPROM_DATA::this_device_address);
+    if (!device_addr_valid(!device_addr_valid(_addr)) {
+      _addr = EEPROM_DATA::default_defice_address;
+      store_device_addr(_addr);
+    }
+    return _addr;
+  }
+}
+namespace COMMANDS {
+  enum {
+    assign_new_device_addr  = 0xC1;
+    set_output_1            = 0xB1;
+  };
+  bool do_command(uint8_t cmd, uint16_t cmd_data) {
+    switch (cmd) {
+      case COMMANDS::assign_new_device_addr:
+        uint8_t assign_new_device_addr;
+        new_device_addr = uint8_t(cmd_data & 0x007F);
+        return EEPROM_DATA::store_device_addr(new_device_addr);
+        break;
+      case COMMANDS::set_output_1:
+        VARS:output_1 = int(cmd_data);
+        VARS:output_1_needs_update = true;
+        break;
+    }
+  }
+}*/
 
 struct sensors sen;
 
