@@ -1,5 +1,5 @@
 /*
-  I2C MASTER device
+  I2C MASTER device ESP32
 
   By: Alexander Bobkov
 
