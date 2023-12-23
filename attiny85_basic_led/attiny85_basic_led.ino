@@ -27,7 +27,7 @@
 //#include "DigiKeyboard.h"
 #include <Arduino.h>
 //#include <TinyWireM.h>
-#include <TinyWireS.h>
+#include "TinyWireS.h"
 //#include <LiquidCrystal_I2C.h>
 #include <avr/delay.h>
 
