@@ -52,6 +52,14 @@ struct sensors {
   uint8_t n = 0x0;
 };
 
+/*
+  I2C Registers
+*/
+const byte reg_size = 4;
+volatile uint16_t i2c_registers[reg_size];
+volatile byte reg_position;
+boolean update_request = false;
+
 struct sensors sen;
 
 
@@ -62,8 +70,8 @@ void setup() {
   pinMode(SENSOR_PIN, INPUT);
   // Initialize I2C slave device at given address.
   TinyWireS.begin(address);
-  //TinyWireS.onRequest(requestEvent);
-  //TinyWireS.onReceive(receiveEvent);
+  TinyWireS.onRequest(requestEvent);
+  TinyWireS.onReceive(receiveEvent);
 }
 
 void loop() {
@@ -95,5 +103,26 @@ void loop() {
   delay(500);
 }
 
-void requestEvent() {}
-void receiveEvent() {}
+void requestEvent() {
+
+  // Sends value from current register position
+  TinyWireS.send(i2c_registers[reg_position]);
+
+  reg_position++;
+  if (reg_position >= reg_size)
+    reg_position = 0;
+}
+void receiveEvent(uint8_t size) {
+  if (size < 1)
+    return;
+  
+  reg_position = TinyWireS.receive();
+  size--;
+  while (size--) {
+    i2c_registers[reg_position] = TinyWireS.receive();
+    reg_position++;
+    if (reg_position >= reg_size)
+      reg_position = 0;
+  }
+  update_request = true;
+}
