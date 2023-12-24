@@ -15,7 +15,9 @@
   ESP32:
     SDA -> GPIO 21
     SCL -> GPIO 22
+    
 */
+
 #include <Arduino.h>
 #include <Wire.h>
 #include "config.h"

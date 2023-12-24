@@ -58,7 +58,7 @@ MEMORY
 
   are connected to the data port of the CPU and eg allow bytewise access. */
   /* IRAM for CPU.*/
-  iram0_0_seg (RX) : org = (0x40020000 + 0x2000 + 0x2000), len = 0x3FFDF000 - (0x3FFB0000 + 0x2000 + 0x2000)
+  iram0_0_seg (RX) : org = (0x40020000 + 0x4000 + 0x4000), len = 0x3FFDF000 - (0x3FFB0000 + 0x4000 + 0x4000)
   /* Even though the segment name is iram, it is actually mapped to flash
 
   */
@@ -77,7 +77,7 @@ MEMORY
 
   */
   /* Shared data RAM, excluding memory reserved for bootloader and ROM bss/data/stack. */
-  dram0_0_seg (RW) : org = (0x3FFB0000 + 0x2000 + 0x2000), len = 0x3FFDF000 - (0x3FFB0000 + 0x2000 + 0x2000)
+  dram0_0_seg (RW) : org = (0x3FFB0000 + 0x4000 + 0x4000), len = 0x3FFDF000 - (0x3FFB0000 + 0x4000 + 0x4000)
   /* Flash mapped constant data */
   drom0_0_seg (R) : org = 0x3F000020, len = 0x3f0000-0x20
   /* (See iram0_2_seg for meaning of 0x20 offset in the above.) */
