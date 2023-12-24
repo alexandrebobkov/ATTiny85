@@ -15,14 +15,13 @@
   ESP32:
     SDA -> GPIO 21
     SCL -> GPIO 22
-  
 */
 #include <Arduino.h>
 #include <Wire.h>
 #include "config.h"
 
-#define ESP32-S2-Mini
-//#define ESP32-DevKit
+//#define ESP32-S2-Mini
+#define ESP32-DevKit
 
 //#define BUILTIN_LED 17
 
