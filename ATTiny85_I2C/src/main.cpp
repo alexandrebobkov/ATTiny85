@@ -1,4 +1,5 @@
 /*
+
   I2C MASTER device ESP32
 
   By: Alexander Bobkov
@@ -18,20 +19,25 @@
 */
 #include <Arduino.h>
 #include <Wire.h>
+#include "config.h"
 
-#define BUILTIN_LED 2
+#define ESP32-S2-Mini
+//#define ESP32-DevKit
+
+//#define BUILTIN_LED 17
 
 byte i2c_data, address, err, device_addr;
 
 void setup() {
   delay(100);
-  Wire.begin();
+  Wire.begin(33,35); // SDA -> GPIO33; SCL -> GPIO35
   Wire.setClock(1000);
   pinMode(BUILTIN_LED, OUTPUT);
   Serial.begin(115200);
-  Serial.println("I2C");
 
+//ifdef ESP32-DevKit
   // Scan I2C bus
+  Serial.println("I2C");
   int dev_num = 0;  //Save number of devices connected to I2C bus
   Serial.println("I2C scan ...");
   for (address = 1; address < 127; address++)
@@ -59,6 +65,7 @@ void setup() {
   Serial.print(dev_num);
   Serial.println(" devices on I2C bus\n\n");
   delay(2500);
+//  #endif
 }
 
 void loop() {
