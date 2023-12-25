@@ -13,8 +13,8 @@
     Cause: happens when master I2C device is offline; I2C slave device power is dependant on ESP32 master I2C device
 
   ESP32:
-    SDA -> GPIO 21
-    SCL -> GPIO 22
+    SDA -> GPIO 21 (green)
+    SCL -> GPIO 22 (yellow)
     
 */
 
@@ -31,6 +31,7 @@ byte i2c_data, address, err, device_addr;
 
 void setup() {
   delay(100);
+  // I2C setup for ESP32 S2 mini board
   Wire.begin(33,35); // SDA -> GPIO33; SCL -> GPIO35
   Wire.setClock(1000);
   pinMode(BUILTIN_LED, OUTPUT);
