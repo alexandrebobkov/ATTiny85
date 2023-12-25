@@ -1,10 +1,10 @@
 #include <LCD-I2C.h>
 #include <Wire.h>
 
-//LCD_I2C lcd(0x27, 16, 2);
+LCD_I2C lcd(0x27, 16, 2);
 
 // I2C peripheral address
-uint8_t address = 10;
+uint8_t address = 0;
 uint8_t i2c_data, device_addr;
 
 // 40 pixels
@@ -23,13 +23,17 @@ uint8_t pixel;
 void setup() {
   // put your setup code here, to run once:
 
-  /*lcd.begin();
+  Serial.begin(9600);
+  Serial.println("LCD");
+
+  lcd.begin();
   lcd.clear();
   lcd.display();
   lcd.backlight();
   lcd.setCursor(0, 0);   // Line 1, column 1
   //lcd.write(0);
-  lcd.print(" HAPPY HOLIDAYS ");
+  //lcd.print(" HAPPY HOLIDAYS ");
+  lcd.print(" I2C Bus Scanner ");
   //lcd.displayOff();  
   
   lcd.createChar(0, char1);
@@ -50,9 +54,11 @@ void setup() {
   char1[3] = pixel;
   lcd.createChar(2, char1);
   lcd.setCursor(3, 1);
-  lcd.write(2);*/
+  lcd.write(2);
 
   //Wire.begin(address);
+  lcd.setCursor(0, 2);
+  lcd.print("Addr: ");
   delay(2500);
   Wire.begin();
   Serial.println("I2C");
@@ -73,11 +79,23 @@ void setup() {
       Serial.println(i2c_data, HEX);
       // Note address of available device.
       device_addr = address;
+      //lcd.setCursor(uint8_t column, uint8_t row);
+      lcd.setCursor(7, 2);
+      //lcd.print("0A");
+      lcd.print("   ");
+      lcd.setCursor(7, 2);
+      lcd.print(address);
     }
     else if (Wire.endTransmission() == 4)
       Serial.println("I2C unknown error.");
     delay(150); //500
   }
+
+  device_addr = 0xA;
+  lcd.setCursor(7, 2);
+  lcd.print("   ");
+  lcd.setCursor(7, 2);
+  lcd.print(device_addr);
 }
 
 void loop() {
@@ -92,10 +110,15 @@ void loop() {
   if (Wire.endTransmission() == 0) {
     Wire.requestFrom(device_addr, 2);
     size_t buff_size = Wire.readBytes((uint8_t*)&i2c_data, 2);
-    Serial.print("Value: ");
-    Serial.println(i2c_data, HEX);
+    Serial.print("Value: 0x");
+    Serial.print(i2c_data, HEX);
+    Serial.print(" (");
+    Serial.print(i2c_data, DEC);
+    Serial.println(" )");
     Serial.println();
   }
+  lcd.setCursor(13, 2);
+  lcd.print(i2c_data);
   // Delay 1 second
   delay(1000);
 
