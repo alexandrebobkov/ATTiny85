@@ -110,6 +110,7 @@ void loop() {
   if (Wire.endTransmission() == 0) {
     Wire.requestFrom(device_addr, 2);
     size_t buff_size = Wire.readBytes((uint8_t*)&i2c_data, 2);
+    delay(500);
     Serial.print("Value: 0x");
     Serial.print(i2c_data, HEX);
     Serial.print(" (");
@@ -120,7 +121,7 @@ void loop() {
   lcd.setCursor(13, 2);
   lcd.print(i2c_data);
   // Delay 1 second
-  delay(1000);
+  delay(500);
 
   /*for (int i = 0; i < 125; i++) {
     //lcd.clear();
