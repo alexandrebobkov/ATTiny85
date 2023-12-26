@@ -83,26 +83,27 @@ boolean update_request = false;
     }
     return _addr;
   }
-}
+}*/
 namespace COMMANDS {
   enum {
-    assign_new_device_addr  = 0xC1;
-    set_output_1            = 0xB1;
+    set_output_1 = 0xB1,
+    set_output_2 = 0xB2,
+    read_sensor_1 = 0xC1
   };
   bool do_command(uint8_t cmd, uint16_t cmd_data) {
     switch (cmd) {
-      case COMMANDS::assign_new_device_addr:
-        uint8_t assign_new_device_addr;
-        new_device_addr = uint8_t(cmd_data & 0x007F);
-        return EEPROM_DATA::store_device_addr(new_device_addr);
-        break;
       case COMMANDS::set_output_1:
-        VARS:output_1 = int(cmd_data);
-        VARS:output_1_needs_update = true;
+        return true;
+        break;
+      case COMMANDS::set_output_2:
+        return true;
+        break;
+      case COMMANDS::read_sensor_1:
+        return true;
         break;
     }
   }
-}*/
+}
 
 struct sensors sen;
 
