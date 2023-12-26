@@ -19,6 +19,7 @@ uint8_t char1 [8] = {
   0b00000
 };
 uint8_t pixel;
+size_t buff_size;
 
 void setup() {
   // put your setup code here, to run once:
@@ -66,8 +67,8 @@ void setup() {
   Serial.println("I2C scan ...");
   for (address = 1; address < 127; address++)
   {
-    Serial.print("Address: ");
-    Serial.println(address, HEX);
+    //Serial.print("Address: ");
+    //Serial.println(address, HEX);
     Wire.beginTransmission(address);
     if (Wire.endTransmission() == 0) {
       Serial.print("I2C device was found at address: ");
@@ -109,7 +110,7 @@ void loop() {
   // Display value if request succeeded
   if (Wire.endTransmission() == 0) {
     Wire.requestFrom(device_addr, 2);
-    size_t buff_size = Wire.readBytes((uint8_t*)&i2c_data, 2);
+    buff_size = Wire.readBytes((uint8_t*)&i2c_data, 2);
     delay(500);
     Serial.print("Value: 0x");
     Serial.print(i2c_data, HEX);
@@ -120,8 +121,56 @@ void loop() {
   }
   lcd.setCursor(13, 2);
   lcd.print(i2c_data);
+  Wire.endTransmission();
   // Delay 1 second
   delay(500);
+
+  Wire.beginTransmission(17);
+  Wire.requestFrom(17, 2);
+  buff_size = Wire.readBytes((uint8_t*)&i2c_data, 2);
+  delay(500);
+  Serial.print("Address 17; Value: ");
+  Serial.println(i2c_data, DEC);
+  Wire.endTransmission();
+
+  delay(1500);
+  Serial.println("Sending value 25 to address 17.");
+  Wire.beginTransmission(17);
+  Wire.write(25);
+  Wire.endTransmission();
+  Wire.beginTransmission(17);
+  Wire.requestFrom(17, 2);
+  buff_size = Wire.readBytes((uint8_t*)&i2c_data, 2);
+  delay(500);
+  Serial.print("Address 17; Value: ");
+  Serial.println(i2c_data, DEC);
+  Wire.endTransmission();
+
+  delay(1500);
+  Serial.println("Sending value 50 to address 17.");
+  Wire.beginTransmission(17);
+  Wire.write(50);
+  Wire.endTransmission();
+  Wire.beginTransmission(17);
+  Wire.requestFrom(17, 2);
+  buff_size = Wire.readBytes((uint8_t*)&i2c_data, 2);
+  delay(500);
+  Serial.print("Address 17; Value: ");
+  Serial.println(i2c_data, DEC);
+  Wire.endTransmission();
+
+  delay(1500);
+  Serial.println("Sending value 75 to address 17.");
+  Wire.beginTransmission(17);
+  Wire.write(75);
+  Wire.endTransmission();
+  Wire.beginTransmission(17);
+  Wire.requestFrom(17, 2);
+  buff_size = Wire.readBytes((uint8_t*)&i2c_data, 2);
+  delay(500);
+  Serial.print("Address 17; Value: ");
+  Serial.println(i2c_data, DEC);
+  Wire.endTransmission();
 
   /*for (int i = 0; i < 125; i++) {
     //lcd.clear();

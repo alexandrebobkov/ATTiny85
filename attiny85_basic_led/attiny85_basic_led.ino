@@ -32,7 +32,8 @@
 #include <avr/delay.h>
 
 // I2C address
-uint8_t address = 10;
+//uint8_t address = 10;
+uint8_t address = 17;
 
 // Peripheral sensor variables
 uint8_t sensor_value = 0;
@@ -43,6 +44,7 @@ uint8_t data = 1;
 unsigned int LED_SYS_PIN = 0;
 unsigned int LED_PIN = 3;
 int SENSOR_PIN = A2; //4;
+int t_delay = 500;
 
 // Struct for storing sensors values
 struct sensors {
@@ -123,15 +125,15 @@ void loop() {
 
   // LED pulse blink.
   digitalWrite(LED_PIN, HIGH);
-  delay(250);
+  delay(t_delay*10);
   digitalWrite(LED_PIN, LOW);
-  delay(250);
+  delay(t_delay*10);
   digitalWrite(LED_PIN, HIGH);
-  delay(250);
+  delay(t_delay*10);
   digitalWrite(LED_PIN, LOW);
-  delay(250);
+  delay(t_delay*10);
   // Send value between 0 and 10, depending on a cycle iterration
-  if (data < 10)        
+  /*if (data < 10)        
     //data++;
     sen.n = sen.n +1;
   else
@@ -141,21 +143,26 @@ void loop() {
   //TinyWireS.send(data);
   //TinyWireS.send(sen.n);
   TinyWireS.send(sensor_value);
-  TinyWireS.available();
+  TinyWireS.available();*/
   delay(500);
 }
 
 void requestEvent() {
 
+  TinyWireS.send(t_delay);
+  //t_delay = 150;
+
   // Sends value from current register position
-  TinyWireS.send(i2c_registers[reg_position]);
+  /*TinyWireS.send(i2c_registers[reg_position]);
 
   reg_position++;
   if (reg_position >= reg_size)
-    reg_position = 0;
+    reg_position = 0;*/
 }
 void receiveEvent(uint8_t size) {
-  if (size < 1)
+
+  t_delay = TinyWireS.receive();
+  /*if (size < 1)
     return;
   
   reg_position = TinyWireS.receive();
@@ -166,5 +173,5 @@ void receiveEvent(uint8_t size) {
     if (reg_position >= reg_size)
       reg_position = 0;
   }
-  update_request = true;
+  update_request = true;*/
 }
