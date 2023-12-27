@@ -29,6 +29,7 @@ uint8_t char2 [8] = {
   0b11111
 };
 uint8_t pixel;
+uint8_t cmd = 0x00;
 size_t buff_size;
 
 void setup() {
@@ -129,7 +130,7 @@ void loop() {
     Serial.print(i2c_data, HEX);
     Serial.print(" (");
     Serial.print(i2c_data, DEC);
-    Serial.println(" )");
+    Serial.println(")");
     Serial.println();
   }
   lcd.setCursor(13, 2);
@@ -138,60 +139,17 @@ void loop() {
   // Delay 1 second
   delay(500);
 
-  delay(1500);
-  Serial.println("Device at addr 17. Sent value: 25");
-  Wire.beginTransmission(17);
-  Wire.write(25);
-  //Wire.endTransmission();
-  //Wire.beginTransmission(17);
-  Wire.requestFrom(17, 2);
+  // Change the state of an output on ATtiny85 device at address 17
+  cmd = 0x11;                   // Command 0x11 corresponds to LED ON
+  Serial.print("Device at addr 17. Sent value: ");
+  Serial.println(cmd, DEC);
+  Wire.beginTransmission(17);   // Begin transmission to device at address 17
+  Wire.write(cmd);              // Write command to a device at address 17
+  Wire.endTransmission();       // End transmission with device at address 17
+  Wire.beginTransmission(17);   // Begin transmission to device at address 17
+  Wire.requestFrom(17, 2);      // Request 2 bytes from a device at address 17
   buff_size = Wire.readBytes((uint8_t*)&i2c_data, 2);
-  delay(500);
-  Serial.print("Device at addr 17. Received value: ");
+  Wire.endTransmission();       // End transmission with device at address 17
   Serial.println(i2c_data, DEC);
-  //Wire.endTransmission();
-
-  delay(1500);
-  Serial.println("Device at addr 17. Sent value: 50");
-  //Wire.beginTransmission(17);
-  Wire.write(50);
-  //Wire.endTransmission();
-  //Wire.beginTransmission(17);
-  Wire.requestFrom(17, 2);
-  buff_size = Wire.readBytes((uint8_t*)&i2c_data, 2);
-  delay(500);
-  Serial.print("Device at addr 17. Received value: ");
-  Serial.println(i2c_data, DEC);
-  //Wire.endTransmission();
-
-  delay(1500);
-  Serial.println("Device at addr 17. Sent value: 75");
-  //Wire.beginTransmission(17);
-  Wire.write(75);
-  //Wire.endTransmission();
-  //Wire.beginTransmission(17);
-  Wire.requestFrom(17, 2);
-  buff_size = Wire.readBytes((uint8_t*)&i2c_data, 2);
-  delay(500);
-  Serial.print("Device at addr 17. Received value: ");
-  Serial.println(i2c_data, DEC);
-  Wire.endTransmission();
-
-  /*for (int i = 0; i < 125; i++) {
-    //lcd.clear();
-    lcd.setCursor(0, 1);
-    lcd.print("0x");
-    delay(500);
-  }*/
-  // put your main code here, to run repeatedly:
-  /*lcd.setCursor(0, 1);              // Line 2
-  lcd.print(" ESP32 S2 mini ");
-  for (int i = 0; i < 16; i++)
-  {
-    lcd.scrollDisplayLeft();
-    delay(200);
-  }*/
-
-  
 
 }

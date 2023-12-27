@@ -44,7 +44,7 @@ uint8_t data = 1;
 unsigned int LED_SYS_PIN = 0;
 unsigned int LED_PIN = 3;
 int SENSOR_PIN = A2; //4;
-int t_delay = 500;
+int t_delay = 15;
 
 // Struct for storing sensors values
 struct sensors {
@@ -54,6 +54,11 @@ struct sensors {
   uint8_t n = 0x0;
 };
 
+// Commands
+uint8_t cmd = 0x00;
+uint8_t led_on = 0x11;
+uint8_t led_off = 0x10;
+
 /*
   I2C Registers
 */
@@ -62,28 +67,6 @@ volatile uint16_t i2c_registers[reg_size];
 volatile byte reg_position;
 boolean update_request = false;
 
-/*namespace EEPROM_DATA {
-  uint8_t default_defice_address  = address;
-  uint8_t this_device_address = 0x05;
-
-  bool device_addr_valid(uint8_t addr) {
-    return (addr > 0x04 && addr < 0x7E);
-  }
-  bool store_device_addr(uint8_t new_device_addr) {
-    if (!device_addr_valid(new_device_addr))
-      return false;
-    EEPROM.write(EEPROM_DATA::this_device_address, new_device_addr);
-    return true;
-  }
-  uint8_t get_device_addr() {
-    uint8_t _addr = EEPROM.read(EEPROM_DATA::this_device_address);
-    if (!device_addr_valid(!device_addr_valid(_addr)) {
-      _addr = EEPROM_DATA::default_defice_address;
-      store_device_addr(_addr);
-    }
-    return _addr;
-  }
-}*/
 namespace COMMANDS {
   enum {
     set_output_1 = 0xB1,
@@ -150,7 +133,8 @@ void loop() {
 
 void requestEvent() {
 
-  TinyWireS.send(t_delay);
+  //TinyWireS.send(t_delay);
+  TinyWireS.send(cmd);
   //t_delay = 150;
 
   // Sends value from current register position
@@ -162,7 +146,12 @@ void requestEvent() {
 }
 void receiveEvent(uint8_t size) {
 
-  t_delay = TinyWireS.receive();
+  cmd = TinyWireS.receive();
+
+  if (cmd == 0x10)
+    t_delay = 75;
+  else if (cmd == 0x11)
+    t_delay = 25;
   /*if (size < 1)
     return;
   
