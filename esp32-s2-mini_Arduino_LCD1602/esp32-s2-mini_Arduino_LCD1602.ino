@@ -141,8 +141,8 @@ void loop() {
 
   // Change the state of an output on ATtiny85 device at address 17
   cmd = 0x11;                   // Command 0x11 corresponds to LED ON
-  Serial.print("Device at addr 17. Sent value: ");
-  Serial.println(cmd, DEC);
+  Serial.print("Device at addr 17. Sent command: 0x");
+  Serial.println(cmd, HEX);
   Wire.beginTransmission(17);   // Begin transmission to device at address 17
   Wire.write(cmd);              // Write command to a device at address 17
   Wire.endTransmission();       // End transmission with device at address 17
@@ -150,6 +150,7 @@ void loop() {
   Wire.requestFrom(17, 2);      // Request 2 bytes from a device at address 17
   buff_size = Wire.readBytes((uint8_t*)&i2c_data, 2);
   Wire.endTransmission();       // End transmission with device at address 17
-  Serial.println(i2c_data, DEC);
+  Serial.print("Confirmed command: 0x");
+  Serial.println(i2c_data, HEX);
 
 }
