@@ -1,6 +1,6 @@
 <h2>ATTiny85 Inside</h2>
 
-<div><p>A customizable I2C peripheral device powered by ATTiny85 controller. Build your own I2C device.</p></div>
+<div><p><i>A customizable I2C peripheral slave device powered by ATTiny85 controller. Build your own I2C device.</i></p></div>
 
 <img src="https://github.com/alexandrebobkov/ATTiny85/blob/main/assets/attiny85-chip.jpg" style="width:200px;" alt="ATTiny85">
 <h3>Pins Reservations</h3>
@@ -10,5 +10,9 @@
  <li>PB0 - I2C SDA</li>
  <li>PB2 - I2C SCL</li>
 </p>
+<h3>Operations Codes</h3>
+<li>0x10: LED high pulse</li>
+<li>0x11: LED low pulse</li>
+<li>0x12: LED steady</li>
 
 <img src="https://github.com/alexandrebobkov/ATTiny85/blob/main/assets/attiny85-pinout-1.jpg" style="width:40%;" alt="ATTiny85 Pinout">
