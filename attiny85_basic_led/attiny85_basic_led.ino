@@ -1,5 +1,5 @@
 /*
-  I2C SLAVE device
+  ATTiny85 I2C SLAVE device
 
   Arduino IDE
   ATTiny85
@@ -7,18 +7,17 @@
 
   OR
 
-  Board: ATtiny 25/45/85
+  Controller: ATTiny 25/45/85
   Clock: Internal 1MHz
   Processor: ATTiny85
   Programmer: USBtinyISP
   Sketch -> Upload Using Programmer
 
-
   By:     Alexander Bobkov
   Date:   Nov 30, 2023
   Update: Dec 23, 2023
 
-  About:  Basic program written for ATTiny85 that sends data (sensor value) over I2C to a master device.
+  About:  Basic program written for ATTiny85 that exchanges data (sensor value) over I2C between master and slave device.
 
   Notes:  Use Logic 2 viewer to see data being transmitted over I2C.
 
@@ -58,6 +57,14 @@ struct sensors {
 uint8_t cmd = 0x00;
 uint8_t led_on = 0x11;
 uint8_t led_off = 0x10;
+
+enum commands {
+  LED_ON, LED_OFF
+};
+struct registers {
+  enum commands operationCode;
+  union {} addresses;
+};
 
 /*
   I2C Registers
