@@ -32,7 +32,7 @@
 
 // I2C address
 //uint8_t address = 10;
-volatile uint8_t address = 17;
+volatile uint8_t _address = 17;
 
 // Peripheral sensor variables
 uint8_t sensor_value = 0;
@@ -56,9 +56,11 @@ struct sensors {
 // Commands codes
 typedef uint8_t command;
 command cmd = 0x00;
-command led_on = 0x11;
-command led_off = 0x10;
+command led_steady  = 0x12;
+command led_on      = 0x11;
+command led_off     = 0x10;
 
+enum outputs { output1, output2 };
 enum operations {
   LED_ON, LED_OFF
 };
@@ -66,6 +68,7 @@ struct registers {
   enum operations operationCode;
   union {} addresses;
 };
+const uint8_t STATUS_REGISTER{0x1D};
 
 // Serial to Parallel register
 struct LM {
@@ -113,7 +116,7 @@ void setup() {
   pinMode(LED_PIN, OUTPUT);
   pinMode(SENSOR_PIN, INPUT);
   // Initialize I2C slave device at given address.
-  TinyWireS.begin(address);
+  TinyWireS.begin(_address);
   TinyWireS.onRequest(requestEvent);
   TinyWireS.onReceive(receiveEvent);
 }
@@ -124,14 +127,18 @@ void loop() {
   //sensor_raw = analogRead(SENSOR_PIN);
 
   // LED pulse blink.
-  digitalWrite(LED_PIN, HIGH);
-  delay(t_delay*10);
-  digitalWrite(LED_PIN, LOW);
-  delay(t_delay*10);
-  digitalWrite(LED_PIN, HIGH);
-  delay(t_delay*10);
-  digitalWrite(LED_PIN, LOW);
-  delay(t_delay*10);
+  if (t_delay < 100) {
+    digitalWrite(LED_PIN, HIGH);
+    delay(t_delay*10);
+    digitalWrite(LED_PIN, LOW);
+    delay(t_delay*10);
+    digitalWrite(LED_PIN, HIGH);
+    delay(t_delay*10);
+    digitalWrite(LED_PIN, LOW);
+    delay(t_delay*10);
+  }
+  if (t_delay == 100)  // LED steady on
+    digitalWrite(LED_PIN, HIGH);
   // Send value between 0 and 10, depending on a cycle iterration
   /*if (data < 10)        
     //data++;
@@ -168,6 +175,8 @@ void receiveEvent(uint8_t size) {
     t_delay = 75;
   else if (cmd == 0x11)
     t_delay = 25;
+  else if (cmd == 0x12)
+    t_delay = 100;
   /*if (size < 1)
     return;
   

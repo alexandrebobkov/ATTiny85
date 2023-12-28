@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include <LCD-I2C.h>
 #include <Wire.h>
 
@@ -6,6 +7,8 @@ LCD_I2C lcd(0x27, 16, 2);
 // I2C peripheral address
 uint8_t address = 0;
 uint8_t i2c_data, device_addr;
+
+unsigned int sw = 5;  //  D5
 
 // 40 pixels
 uint8_t char1 [8] = {
@@ -33,7 +36,8 @@ uint8_t cmd = 0x00;
 size_t buff_size;
 
 void setup() {
-  // put your setup code here, to run once:
+  
+  pinMode(sw, INPUT_PULLDOWN);
 
   Serial.begin(9600);
   Serial.println("LCD");
@@ -140,7 +144,11 @@ void loop() {
   delay(500);
 
   // Change the state of an output on ATtiny85 device at address 17
-  cmd = 0x11;                   // Command 0x11 corresponds to LED ON
+  if (!digitalRead(sw))
+    cmd = 0x10; // if switch is not pressed -> send LED off command
+  if (digitalRead(sw))
+    cmd = 0x12; // if switch is pressed -> send LED on command
+  //cmd = 0x11;                   // Command 0x11 corresponds to LED ON
   Serial.print("Device at addr 17. Sent command: 0x");
   Serial.println(cmd, HEX);
   Wire.beginTransmission(17);   // Begin transmission to device at address 17
@@ -148,9 +156,14 @@ void loop() {
   Wire.endTransmission();       // End transmission with device at address 17
   Wire.beginTransmission(17);   // Begin transmission to device at address 17
   Wire.requestFrom(17, 2);      // Request 2 bytes from a device at address 17
-  buff_size = Wire.readBytes((uint8_t*)&i2c_data, 2);
+  buff_size = Wire.readBytes((uint8_t*)&i2c_data, 4);
   Wire.endTransmission();       // End transmission with device at address 17
   Serial.print("Confirmed command: 0x");
   Serial.println(i2c_data, HEX);
+
+  // if Switch is pressed
+  Serial.println(digitalRead(sw));
+
+    
 
 }
