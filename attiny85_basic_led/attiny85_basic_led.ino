@@ -32,7 +32,7 @@
 
 // I2C address
 //uint8_t address = 10;
-uint8_t address = 17;
+volatile uint8_t address = 17;
 
 // Peripheral sensor variables
 uint8_t sensor_value = 0;
@@ -53,18 +53,27 @@ struct sensors {
   uint8_t n = 0x0;
 };
 
-// Commands
-uint8_t cmd = 0x00;
-uint8_t led_on = 0x11;
-uint8_t led_off = 0x10;
+// Commands codes
+typedef uint8_t command;
+command cmd = 0x00;
+command led_on = 0x11;
+command led_off = 0x10;
 
-enum commands {
+enum operations {
   LED_ON, LED_OFF
 };
 struct registers {
-  enum commands operationCode;
+  enum operations operationCode;
   union {} addresses;
 };
+
+// Serial to Parallel register
+struct LM {
+  unsigned int D:4; // Bitfield for storing I/O 4 bits
+};
+
+//typedef uint8_t opcode;
+typedef operations opcode;
 
 /*
   I2C Registers
