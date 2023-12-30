@@ -1885,3 +1885,13 @@
 137	490	7255695180613014	C:/Users/alex/espressif/blink/build/bootloader/bootloader.elf	eb1f99e9e96d39a2
 137	490	7255695180613014	C:/Users/alex/espressif/blink/build/bootloader/bootloader.bin	eb1f99e9e96d39a2
 137	490	7255695180613014	C:/Users/alex/espressif/blink/build/bootloader/bootloader.map	eb1f99e9e96d39a2
+151	432	0	esp-idf/esptool_py/CMakeFiles/app_check_size	a4b5955366e3aa1f
+151	432	0	C:/Users/alex/espressif/blink/build/esp-idf/esptool_py/CMakeFiles/app_check_size	a4b5955366e3aa1f
+137	695	7255695180613014	bootloader-prefix/src/bootloader-stamp/bootloader-build	eb1f99e9e96d39a2
+137	695	7255695180613014	bootloader/bootloader.elf	eb1f99e9e96d39a2
+137	695	7255695180613014	bootloader/bootloader.bin	eb1f99e9e96d39a2
+137	695	7255695180613014	bootloader/bootloader.map	eb1f99e9e96d39a2
+137	695	7255695180613014	C:/Users/alex/espressif/blink/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	eb1f99e9e96d39a2
+137	695	7255695180613014	C:/Users/alex/espressif/blink/build/bootloader/bootloader.elf	eb1f99e9e96d39a2
+137	695	7255695180613014	C:/Users/alex/espressif/blink/build/bootloader/bootloader.bin	eb1f99e9e96d39a2
+137	695	7255695180613014	C:/Users/alex/espressif/blink/build/bootloader/bootloader.map	eb1f99e9e96d39a2
