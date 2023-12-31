@@ -1,6 +1,6 @@
 /*
 
-  I2C MASTER device ESP32
+  I2C MASTER device ESP32 (DevKit)
 
   By: Alexander Bobkov
 
