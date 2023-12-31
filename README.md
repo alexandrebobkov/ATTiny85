@@ -2,6 +2,8 @@
 
 <div><p><i>A customizable I2C peripheral slave device powered by ATTiny85 controller. Build your own I2C device.</i></p></div>
 
+<div><p>An eco-system of ESP32 and ATTiny85 microcontrollers. ESP32 serves a function of I2C master device, primarily for demonstration purposes. ATTiny85 serves a function of I2C slave device, i.e. peripheral.</p><p>Source code for ATTiny85 microcontrollers is written using Arduino C++ framework.</p></div>
+
 <img src="https://github.com/alexandrebobkov/ATTiny85/blob/main/assets/attiny85-chip.jpg" style="width:200px;" alt="ATTiny85">
 <h3>Pins Reservations</h3>
 <p>
