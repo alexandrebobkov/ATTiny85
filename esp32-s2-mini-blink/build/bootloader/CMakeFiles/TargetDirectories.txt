@@ -10,6 +10,9 @@ C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/CMakeFiles/bo
 C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/CMakeFiles/size.dir
 C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/CMakeFiles/size-files.dir
 C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/CMakeFiles/size-components.dir
+C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/CMakeFiles/dfu.dir
+C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/CMakeFiles/dfu-list.dir
+C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/CMakeFiles/dfu-flash.dir
 C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/CMakeFiles/uf2-app.dir
 C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/CMakeFiles/uf2.dir
 C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/CMakeFiles/edit_cache.dir
@@ -55,8 +58,8 @@ C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/esp-idf/esp_s
 C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir
 C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/esp-idf/esp_hw_support/CMakeFiles/edit_cache.dir
 C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/esp-idf/esp_hw_support/CMakeFiles/rebuild_cache.dir
-C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/esp-idf/esp_hw_support/port/esp32/CMakeFiles/edit_cache.dir
-C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/esp-idf/esp_hw_support/port/esp32/CMakeFiles/rebuild_cache.dir
+C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/esp-idf/esp_hw_support/port/esp32s2/CMakeFiles/edit_cache.dir
+C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/esp-idf/esp_hw_support/port/esp32s2/CMakeFiles/rebuild_cache.dir
 C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/esp-idf/esp_common/CMakeFiles/__idf_esp_common.dir
 C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/esp-idf/esp_common/CMakeFiles/edit_cache.dir
 C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/bootloader/esp-idf/esp_common/CMakeFiles/rebuild_cache.dir

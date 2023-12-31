@@ -58,5 +58,8 @@ C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/esp-idf/json/libjson.a
 C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/esp-idf/mqtt/libmqtt.a
 C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/esp-idf/perfmon/libperfmon.a
 C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/esp-idf/spiffs/libspiffs.a
+C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/esp-idf/touch_element/libtouch_element.a
+C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/esp-idf/ulp/libulp.a
+C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/esp-idf/usb/libusb.a
 C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/esp-idf/wifi_provisioning/libwifi_provisioning.a
 C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/esp-idf/main/libmain.a
