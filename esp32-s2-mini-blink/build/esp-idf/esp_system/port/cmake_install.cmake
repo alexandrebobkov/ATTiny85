@@ -34,11 +34,11 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/Users/alex/.espressif/tools/xtensa-esp32s2-elf/esp-12.2.0_20230208/xtensa-esp32s2-elf/bin/xtensa-esp32s2-elf-objdump.exe")
+  set(CMAKE_OBJDUMP "C:/Users/alex/.espressif/tools/xtensa-esp32-elf/esp-12.2.0_20230208/xtensa-esp32-elf/bin/xtensa-esp32-elf-objdump.exe")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/alex/espressif/blink/build/esp-idf/esp_system/port/soc/esp32s2/cmake_install.cmake")
+  include("C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build/esp-idf/esp_system/port/soc/esp32/cmake_install.cmake")
 endif()
 
