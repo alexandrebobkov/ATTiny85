@@ -14,5 +14,6 @@
     ],
     "idf.portWin": "COM5",
     "idf.pythonBinPathWin": "c:\\Espressif\\tools\\python_env\\idf5.1_py3.11_env\\Scripts\\python.exe",
-    "idf.toolsPathWin": "c:\\Espressif\\tools"
+    "idf.toolsPathWin": "c:\\Espressif\\tools",
+    "idf.flashType": "DFU"
 }
