@@ -943,3 +943,5 @@
 253829	254242	7263133233912014	C:/Users/alex/github/ATTiny85/esp32-s2-mini_IDF_I2C-basic/i2c_simple/build/.bin_timestamp	31243f5f009208f7
 254243	254406	0	esp-idf/esptool_py/CMakeFiles/app_check_size	ef9a6c8cd8b21a4d
 254243	254406	0	C:/Users/alex/github/ATTiny85/esp32-s2-mini_IDF_I2C-basic/i2c_simple/build/esp-idf/esptool_py/CMakeFiles/app_check_size	ef9a6c8cd8b21a4d
+1	414187	0	CMakeFiles/confserver	e8bc6682d5b9b576
+1	414187	0	C:/Users/alex/github/ATTiny85/esp32-s2-mini_IDF_I2C-basic/i2c_simple/build/CMakeFiles/confserver	e8bc6682d5b9b576
