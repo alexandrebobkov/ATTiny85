@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "blink",
-    "project_version":    "da25a7e-dirty",
+    "project_version":    "c791eba-dirty",
     "project_path":       "C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink",
     "idf_path":           "C:/Users/alex/esp/esp-idf",
     "build_dir":          "C:/Users/alex/github/ATTiny85/esp32-s2-mini-blink/build",
