@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "s2-mini-gpio",
-    "project_version":    "da25a7e",
+    "project_version":    "6d7af8b-dirty",
     "project_path":       "C:/Users/alex/github/ATTiny85/esp32-s2-mini-gpio",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.1.2",
     "build_dir":          "C:/Users/alex/github/ATTiny85/esp32-s2-mini-gpio/build",

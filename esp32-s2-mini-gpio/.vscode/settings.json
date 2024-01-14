@@ -10,10 +10,11 @@
     "idf.espIdfPathWin": "c:\\Espressif\\frameworks\\esp-idf-v5.1.2",
     "idf.espAdfPathWin": "C:\\Users\\alex\\.espressif\\esp-adf",
     "idf.openOcdConfigs": [
-        "board/esp32s2-bridge.cfg"
+        "interface/ftdi/esp32_devkitj_v1.cfg",
+        "target/esp32s2.cfg"
     ],
-    "idf.portWin": "COM5",
+    "idf.portWin": "COM17",
     "idf.pythonBinPathWin": "c:\\Espressif\\tools\\python_env\\idf5.1_py3.11_env\\Scripts\\python.exe",
     "idf.toolsPathWin": "c:\\Espressif\\tools",
-    "idf.flashType": "DFU"
+    "idf.flashType": "UART"
 }
