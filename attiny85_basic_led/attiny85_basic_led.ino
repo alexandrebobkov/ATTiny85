@@ -55,7 +55,7 @@ struct sensors {
 
 // Commands codes
 typedef uint8_t command;
-command cmd = 0x00;
+command cmd         = 0x00;
 command led_steady  = 0x12;
 command led_on      = 0x11;
 command led_off     = 0x10;
@@ -88,8 +88,8 @@ boolean update_request = false;
 
 namespace COMMANDS {
   enum {
-    set_output_1 = 0xB1,
-    set_output_2 = 0xB2,
+    set_output_1  = 0xB1,
+    set_output_2  = 0xB2,
     read_sensor_1 = 0xC1
   };
   bool do_command(uint8_t cmd, uint16_t cmd_data) {
